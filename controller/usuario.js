@@ -4,9 +4,9 @@ class ControllerUsuario {
     // Recebimento e a Saida das info
     async Buscar(req, res) {
         try {
-            console.log(req.session)
             const usuarios = await ServiceUsuario.Buscar()
-            res.status(200).send({ mensagem: usuarios })
+            const filter = usuarios.find(it => it.dataValues.id === req.session.id)
+            res.status(200).send({ mensagem: filter })
         } catch (error) {
             res.status(500).send({
                 mensagem: error.message
@@ -16,7 +16,7 @@ class ControllerUsuario {
 
     async Detalhe(req, res) {
         try {
-            const id = req.params.id
+            const id = req.session.id
 
             const usuario = await ServiceUsuario.Detalhe(id)
 
@@ -59,7 +59,7 @@ class ControllerUsuario {
 
     async Deletar(req, res) {
         try {
-            const identificador = req.params.id
+            const identificador = req.session.id
 
             await ServiceUsuario.Deletar(identificador)
 

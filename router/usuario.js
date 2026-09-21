@@ -6,9 +6,9 @@ const router = express.Router()
 // TODO
 router.post("/login", ControllerUsuario.Login)
 router.get("/buscar", authMiddleware, ControllerUsuario.Buscar)
-router.get("/detalhe/:id", ControllerUsuario.Detalhe)
+router.get("/detalhe", authMiddleware, ControllerUsuario.Detalhe)
 router.post("/criar", ControllerUsuario.Criar)
 router.put("/alterar", authMiddleware, ControllerUsuario.Alterar)
-router.delete("/deletar/:id", ControllerUsuario.Deletar)
+router.delete("/deletar", authMiddleware, ControllerUsuario.Deletar)
 
 export default router
