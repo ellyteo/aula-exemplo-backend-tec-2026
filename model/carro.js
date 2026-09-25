@@ -1,4 +1,5 @@
 import database from "../config/database.js";
+import usuario from "./usuario.js";
 
 class Carro {
     constructor() {
@@ -13,6 +14,15 @@ class Carro {
             },
             ano: {
                 type: database.db.Sequelize.INTEGER,
+            },
+            usuarioId: {
+                field: 'usuario_id',
+                type: database.db.Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: usuario,
+                    key: 'id'
+                }
             }
         })
     }

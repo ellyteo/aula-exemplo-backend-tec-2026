@@ -1,28 +1,28 @@
-import carro from '../model/carro.js';
+import { Carro } from '../model/index.js';
 
 // INSERT INTO carros (marca, ano) VALUES ("FIAT", 1998)
 class RepositoryCarro {
     
     async Find() {
-        const carros = await carro.findAll()
+        const carros = await Carro.findAll()
 
         return carros
     }
 
     async FindById(id) {
-        const carroDetalhes = await carro.findByPk(id)
+        const carroDetalhes = await Carro.findByPk(id)
 
         return carroDetalhes
     }
 
     async Create(marca, ano) {
-        const carroCreate = await carro.create({ marca, ano })
+        const carroCreate = await Carro.create({ marca, ano })
 
         return carroCreate
     }
 
     async Update(id, marca, ano) {
-        const carroAlterar = await carro.findByPk(id)
+        const carroAlterar = await Carro.findByPk(id)
 
         if(!carroAlterar) {
             throw new Error("Carro não encontrado")
@@ -35,7 +35,7 @@ class RepositoryCarro {
     }
 
     async Delete(id) {
-        const carroDeletar = await carro.findByPk(id)
+        const carroDeletar = await Carro.findByPk(id)
 
         if(!carroDeletar){
             throw new Error("Carro não encontrado")

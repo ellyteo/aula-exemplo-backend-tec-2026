@@ -1,28 +1,30 @@
-import usuario from '../model/usuario.js';
+import { Usuario } from '../model/index.js';
 
 // INSERT INTO usuarios (email, senha) VALUES ("FIAT", 1998)
 class RepositoryUsuario {
     
     async Find() {
-        const usuarios = await usuario.findAll()
+        const usuarios = await Usuario.findAll({
+            include: ['carros']
+        })
 
         return usuarios
     }
 
     async FindById(id) {
-        const usuarioDetalhes = await usuario.findByPk(id)
+        const usuarioDetalhes = await Usuario.findByPk(id)
 
         return usuarioDetalhes
     }
 
     async Create(email, senha) {
-        const usuarioCreate = await usuario.create({ email, senha })
+        const usuarioCreate = await Usuario.create({ email, senha })
 
         return usuarioCreate
     }
 
     async Update(id, email, senha) {
-        const usuarioAlterar = await usuario.findByPk(id)
+        const usuarioAlterar = await Usuario.findByPk(id)
 
         if(!usuarioAlterar) {
             throw new Error("Usuario não encontrado")
@@ -35,7 +37,7 @@ class RepositoryUsuario {
     }
 
     async Delete(id) {
-        const usuarioDeletar = await usuario.findByPk(id)
+        const usuarioDeletar = await Usuario.findByPk(id)
 
         if(!usuarioDeletar){
             throw new Error("Usuario não encontrado")
@@ -47,7 +49,7 @@ class RepositoryUsuario {
     }
 
     async FindByEmail(email) {
-        return usuario.findOne({ where: { email } })
+        return Usuario.findOne({ where: { email } })
     }
 }
 
