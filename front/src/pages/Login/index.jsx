@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './style.css'
+import { getLogin } from '../../api/api';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -33,7 +34,10 @@ export default function Login() {
         <button
             className="button"
             type="submit"
-            onClick={() => {}}
+            onClick={(e) => {
+                e.preventDefault()
+                getLogin()
+            }}
         >Entrar</button>
         <button
             className="button back-button"
