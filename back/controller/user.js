@@ -42,7 +42,7 @@ class ControllerUser {
             const { name, email, password } = req.body
 
             await ServiceUser.Alterar(id, name, email, password)
-        
+
             res.status(200).send({ message: "Usuário alterado com sucesso!" })
         } catch (error) {
             res.status(500).send({ message: error.message })
@@ -64,7 +64,7 @@ class ControllerUser {
     async Login(req, res) {
         try {
             const { email, password } = req.body
-    
+
             const token = await ServiceUser.Login(email, password)
 
             res.status(200).send({ token })
