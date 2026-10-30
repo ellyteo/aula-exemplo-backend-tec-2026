@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/buscar', authMiddleware, ControllerUser.Buscar)
 router.get('/detalhe', authMiddleware, ControllerUser.Detalhe)
-router.post('/criar', ControllerUser.Criar)
+router.post('/signin', ControllerUser.Criar)
 router.put('/alterar', authMiddleware, ControllerUser.Alterar)
 router.delete('/deletar', authMiddleware, ControllerUser.Deletar)
 
